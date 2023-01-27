@@ -1150,10 +1150,31 @@ kept for compatibility with older versions.\n\
 
 PyDoc_STRVAR(doc_to_integral_exact,
 "to_integral_exact($self, /, rounding=None, context=None)\n--\n\n\
-Round to the nearest integer, signaling Inexact or Rounded as appropriate if\n\
-rounding occurs.  The rounding mode is determined by the rounding parameter\n\
-if given, else by the given context. If neither parameter is given, then the\n\
-rounding mode of the current default context is used.\n\
+Rounds to an integer.\n\
+\n\
+When the operand has a negative exponent, the result is the same\n\
+as using the quantize() operation using the given operand as the\n\
+left-hand-operand, 1E+0 as the right-hand-operand, and the precision\n\
+of the operand as the precision setting; Inexact and Rounded flags\n\
+are allowed in this operation.  The rounding mode is taken from the\n\
+context.\n\
+\n\
+    >>> ExtendedContext.to_integral_exact(Decimal('2.1'))\n\
+    Decimal('2')\n\
+    >>> ExtendedContext.to_integral_exact(Decimal('100'))\n\
+    Decimal('100')\n\
+    >>> ExtendedContext.to_integral_exact(Decimal('100.0'))\n\
+    Decimal('100')\n\
+    >>> ExtendedContext.to_integral_exact(Decimal('101.5'))\n\
+    Decimal('102')\n\
+    >>> ExtendedContext.to_integral_exact(Decimal('-101.5'))\n\
+    Decimal('-102')\n\
+    >>> ExtendedContext.to_integral_exact(Decimal('10E+5'))\n\
+    Decimal('1.0E+6')\n\
+    >>> ExtendedContext.to_integral_exact(Decimal('7.89E+77'))\n\
+    Decimal('7.89E+77')\n\
+    >>> ExtendedContext.to_integral_exact(Decimal('-Inf'))\n\
+    Decimal('-Infinity')\n\
 \n");
 
 PyDoc_STRVAR(doc_to_integral_value,
