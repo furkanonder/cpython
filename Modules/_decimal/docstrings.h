@@ -822,6 +822,21 @@ converting any result equal to Decimal('0') to Decimal('0e0').  Used\n\
 for producing canonical values for members of an equivalence class.\n\
 For example, Decimal('32.100') and Decimal('0.321000e+2') both normalize\n\
 to the equivalent value Decimal('32.1').\n\
+\n\
+    >>> ExtendedContext.normalize(Decimal('2.1'))\n\
+    Decimal('2.1')\n\
+    >>> ExtendedContext.normalize(Decimal('-2.0'))\n\
+    Decimal('-2')\n\
+    >>> ExtendedContext.normalize(Decimal('1.200'))\n\
+    Decimal('1.2')\n\
+    >>> ExtendedContext.normalize(Decimal('-120'))\n\
+    Decimal('-1.2E+2')\n\
+    >>> ExtendedContext.normalize(Decimal('120.00'))\n\
+    Decimal('1.2E+2')\n\
+    >>> ExtendedContext.normalize(Decimal('0.00'))\n\
+    Decimal('0')\n\
+    >>> ExtendedContext.normalize(6)\n\
+    Decimal('6')\n\
 \n");
 
 PyDoc_STRVAR(doc_number_class,

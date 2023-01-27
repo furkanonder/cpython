@@ -5095,10 +5095,11 @@ class Context(object):
         return a.next_toward(b, context=self)
 
     def normalize(self, a):
-        """normalize reduces an operand to its simplest form.
-
-        Essentially a plus operation with all trailing zeros removed from the
-        result.
+        """Normalize the number by stripping the rightmost trailing zeros and
+        converting any result equal to Decimal('0') to Decimal('0e0').  Used
+        for producing canonical values for members of an equivalence class.
+        For example, Decimal('32.100') and Decimal('0.321000e+2') both normalize
+        to the equivalent value Decimal('32.1').
 
         >>> ExtendedContext.normalize(Decimal('2.1'))
         Decimal('2.1')
