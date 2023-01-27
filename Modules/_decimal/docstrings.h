@@ -1117,12 +1117,29 @@ algorithm.\n\
 
 PyDoc_STRVAR(doc_to_eng_string,
 "to_eng_string($self, /, context=None)\n--\n\n\
-Convert to an engineering-type string.  Engineering notation has an exponent\n\
-which is a multiple of 3, so there are up to 3 digits left of the decimal\n\
-place. For example, Decimal('123E+1') is converted to Decimal('1.23E+3').\n\
+Convert to a string, using engineering notation if an exponent is needed.\n\
+\n\
+Engineering notation has an exponent which is a multiple of 3. This\n\
+can leave up to 3 digits to the left of the decimal place and may\n\
+require the addition of either one or two trailing zeros.\n\
 \n\
 The value of context.capitals determines whether the exponent sign is lower\n\
 or upper case. Otherwise, the context does not affect the operation.\n\
+\n\
+    >>> ExtendedContext.to_eng_string(Decimal('123E+1'))\n\
+    '1.23E+3'\n\
+    >>> ExtendedContext.to_eng_string(Decimal('123E+3'))\n\
+    '123E+3'\n\
+    >>> ExtendedContext.to_eng_string(Decimal('123E-10'))\n\
+    '12.3E-9'\n\
+    >>> ExtendedContext.to_eng_string(Decimal('-123E-12'))\n\
+    '-123E-12'\n\
+    >>> ExtendedContext.to_eng_string(Decimal('7E-7'))\n\
+    '700E-9'\n\
+    >>> ExtendedContext.to_eng_string(Decimal('7E+1'))\n\
+    '70'\n\
+    >>> ExtendedContext.to_eng_string(Decimal('0E+1'))\n\
+    '0.00E+3'\n\
 \n");
 
 PyDoc_STRVAR(doc_to_integral,

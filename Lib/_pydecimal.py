@@ -5586,7 +5586,6 @@ class Context(object):
         '70'
         >>> ExtendedContext.to_eng_string(Decimal('0E+1'))
         '0.00E+3'
-
         """
         a = _convert_other(a, raiseit=True)
         return a.to_eng_string(context=self)
