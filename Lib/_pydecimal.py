@@ -5018,7 +5018,9 @@ class Context(object):
             return r
 
     def next_minus(self, a):
-        """Returns the largest representable number smaller than a.
+        """Return the largest number representable in the given context (or in the\n\
+        current default context if no context is given) that is smaller than the\n\
+        given operand.\n\
 
         >>> c = ExtendedContext.copy()
         >>> c.Emin = -999
