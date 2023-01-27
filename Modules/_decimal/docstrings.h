@@ -99,12 +99,44 @@ argument unchanged.\n\
 
 PyDoc_STRVAR(doc_compare,
 "compare($self, /, other, context=None)\n--\n\n\
-Compare self to other.  Return a decimal value:\n\
+Compare values numerically.\n\
 \n\
-    a or b is a NaN ==> Decimal('NaN')\n\
-    a < b           ==> Decimal('-1')\n\
-    a == b          ==> Decimal('0')\n\
-    a > b           ==> Decimal('1')\n\
+If the signs of the operands differ, a value representing each operand\n\
+('-1' if the operand is less than zero, '0' if the operand is zero or\n\
+negative zero, or '1' if the operand is greater than zero) is used in\n\
+place of that operand for the comparison instead of the actual\n\
+operand.\n\
+\n\
+The comparison is then effected by subtracting the second operand from\n\
+the first and then returning a value according to the result of the\n\
+subtraction: '-1' if the result is less than zero, '0' if the result is\n\
+zero or negative zero, or '1' if the result is greater than zero.\n\
+\n\
+        a or b is a NaN ==> Decimal('NaN')\n\
+        a < b           ==> Decimal('-1')\n\
+        a == b          ==> Decimal('0')\n\
+        a > b           ==> Decimal('1')\n\
+\n\
+    >>> ExtendedContext.compare(Decimal('2.1'), Decimal('3'))\n\
+    Decimal('-1')\n\
+    >>> ExtendedContext.compare(Decimal('2.1'), Decimal('2.1'))\n\
+    Decimal('0')\n\
+    >>> ExtendedContext.compare(Decimal('2.1'), Decimal('2.10'))\n\
+    Decimal('0')\n\
+    >>> ExtendedContext.compare(Decimal('3'), Decimal('2.1'))\n\
+    Decimal('1')\n\
+    >>> ExtendedContext.compare(Decimal('2.1'), Decimal('-3'))\n\
+    Decimal('1')\n\
+    >>> ExtendedContext.compare(Decimal('-3'), Decimal('2.1'))\n\
+    Decimal('-1')\n\
+    >>> ExtendedContext.compare(1, 2)\n\
+    Decimal('-1')\n\
+    >>> ExtendedContext.compare(Decimal(1), 2)\n\
+    Decimal('-1')\n\
+    >>> ExtendedContext.compare(1, Decimal(2))\n\
+    Decimal('-1')\n\
+    >>> ExtendedContext.compare(Decimal('2'), Decimal('NaN'))\n\
+    Decimal('NaN')\n\
 \n");
 
 PyDoc_STRVAR(doc_compare_signal,

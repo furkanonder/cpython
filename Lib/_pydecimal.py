@@ -4215,6 +4215,11 @@ class Context(object):
         subtraction: '-1' if the result is less than zero, '0' if the result is
         zero or negative zero, or '1' if the result is greater than zero.
 
+            a or b is a NaN ==> Decimal('NaN')
+            a < b           ==> Decimal('-1')
+            a == b          ==> Decimal('0')
+            a > b           ==> Decimal('1')
+
         >>> ExtendedContext.compare(Decimal('2.1'), Decimal('3'))
         Decimal('-1')
         >>> ExtendedContext.compare(Decimal('2.1'), Decimal('2.1'))
@@ -4233,6 +4238,8 @@ class Context(object):
         Decimal('-1')
         >>> ExtendedContext.compare(1, Decimal(2))
         Decimal('-1')
+        >>> ExtendedContext.compare(Decimal('2'), Decimal('NaN'))
+        Decimal('NaN')
         """
         a = _convert_other(a, raiseit=True)
         return a.compare(b, context=self)
