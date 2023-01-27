@@ -438,7 +438,16 @@ Note that both zeros and NaNs can carry signs.\n\
 
 PyDoc_STRVAR(doc_is_snan,
 "is_snan($self, /)\n--\n\n\
-Return True if the argument is a signaling NaN and False otherwise.\n\
+Return True if the operand is a signaling NaN; otherwise return False.\n\
+\n\
+    >>> ExtendedContext.is_snan(Decimal('2.50'))\n\
+    False\n\
+    >>> ExtendedContext.is_snan(Decimal('NaN'))\n\
+    False\n\
+    >>> ExtendedContext.is_snan(Decimal('sNaN'))\n\
+    True\n\
+    >>> ExtendedContext.is_snan(1)\n\
+    False\n\
 \n");
 
 PyDoc_STRVAR(doc_is_subnormal,
