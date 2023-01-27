@@ -4702,7 +4702,8 @@ class Context(object):
         return a.is_zero()
 
     def ln(self, a):
-        """Returns the natural (base e) logarithm of the operand.
+        """Return the natural (base e) logarithm of the operand. The function always
+        uses the ROUND_HALF_EVEN mode and the result is correctly rounded.
 
         >>> c = ExtendedContext.copy()
         >>> c.Emin = -999

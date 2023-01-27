@@ -493,6 +493,22 @@ PyDoc_STRVAR(doc_ln,
 "ln($self, /, context=None)\n--\n\n\
 Return the natural (base e) logarithm of the operand. The function always\n\
 uses the ROUND_HALF_EVEN mode and the result is correctly rounded.\n\
+\n\
+    >>> c = ExtendedContext.copy()\n\
+    >>> c.Emin = -999\n\
+    >>> c.Emax = 999\n\
+    >>> c.ln(Decimal('0'))\n\
+    Decimal('-Infinity')\n\
+    >>> c.ln(Decimal('1.000'))\n\
+    Decimal('0')\n\
+    >>> c.ln(Decimal('2.71828183'))\n\
+    Decimal('1.00000000')\n\
+    >>> c.ln(Decimal('10'))\n\
+    Decimal('2.30258509')\n\
+    >>> c.ln(Decimal('+Infinity'))\n\
+    Decimal('Infinity')\n\
+    >>> c.ln(1)\n\
+    Decimal('0')\n\
 \n");
 
 PyDoc_STRVAR(doc_log10,
