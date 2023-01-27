@@ -334,8 +334,23 @@ canonical, so this method returns True for any Decimal.\n\
 
 PyDoc_STRVAR(doc_is_finite,
 "is_finite($self, /)\n--\n\n\
-Return True if the argument is a finite number, and False if the argument\n\
-is infinite or a NaN.\n\
+Return True if the operand is finite; otherwise return False.\n\
+\n\
+A Decimal instance is considered finite if it is neither infinite nor a\n\
+NaN.\n\
+\n\
+    >>> ExtendedContext.is_finite(Decimal('2.50'))\n\
+   True\n\
+    >>> ExtendedContext.is_finite(Decimal('-0.3'))\n\
+    True\n\
+    >>> ExtendedContext.is_finite(Decimal('0'))\n\
+    True\n\
+    >>> ExtendedContext.is_finite(Decimal('Inf'))\n\
+    False\n\
+    >>> ExtendedContext.is_finite(Decimal('NaN'))\n\
+    False\n\
+    >>> ExtendedContext.is_finite(1)\n\
+    True\n\
 \n");
 
 PyDoc_STRVAR(doc_is_infinite,
