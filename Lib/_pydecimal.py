@@ -4381,6 +4381,10 @@ class Context(object):
         Decimal('-1')
         >>> ExtendedContext.copy_sign(1, Decimal(-2))
         Decimal('-1')
+
+        This operation is unaffected by context and is quiet: no flags are changed
+        and no rounding is performed. As an exception, the C version may raise
+        InvalidOperation if the second operand cannot be converted exactly.
         """
         a = _convert_other(a, raiseit=True)
         return a.copy_sign(b)
