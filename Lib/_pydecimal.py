@@ -4725,7 +4725,8 @@ class Context(object):
         return a.ln(context=self)
 
     def log10(self, a):
-        """Returns the base 10 logarithm of the operand.
+        """Return the base 10 logarithm of the operand. The function always uses the
+        ROUND_HALF_EVEN mode and the result is correctly rounded.
 
         >>> c = ExtendedContext.copy()
         >>> c.Emin = -999

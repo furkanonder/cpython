@@ -513,16 +513,54 @@ uses the ROUND_HALF_EVEN mode and the result is correctly rounded.\n\
 
 PyDoc_STRVAR(doc_log10,
 "log10($self, /, context=None)\n--\n\n\
-Return the base ten logarithm of the operand. The function always uses the\n\
+Return the base 10 logarithm of the operand. The function always uses the\n\
 ROUND_HALF_EVEN mode and the result is correctly rounded.\n\
+\n\
+    >>> c = ExtendedContext.copy()\n\
+    >>> c.Emin = -999\n\
+    >>> c.Emax = 999\n\
+    >>> c.log10(Decimal('0'))\n\
+    Decimal('-Infinity')\n\
+    >>> c.log10(Decimal('0.001'))\n\
+    Decimal('-3')\n\
+    >>> c.log10(Decimal('1.000'))\n\
+    Decimal('0')\n\
+    >>> c.log10(Decimal('2'))\n\
+    Decimal('0.301029996')\n\
+    >>> c.log10(Decimal('10'))\n\
+    Decimal('1')\n\
+    >>> c.log10(Decimal('70'))\n\
+    Decimal('1.84509804')\n\
+    >>> c.log10(Decimal('+Infinity'))\n\
+    Decimal('Infinity')\n\
+    >>> c.log10(0)\n\
+    Decimal('-Infinity')\n\
+    >>> c.log10(1)\n\
+    Decimal('0')\n\
 \n");
 
 PyDoc_STRVAR(doc_logb,
 "logb($self, /, context=None)\n--\n\n\
-For a non-zero number, return the adjusted exponent of the operand as a\n\
-Decimal instance.  If the operand is a zero, then Decimal('-Infinity') is\n\
-returned and the DivisionByZero condition is raised. If the operand is\n\
-an infinity then Decimal('Infinity') is returned.\n\
+Returns the exponent of the magnitude of the operand's MSD.\n\
+The result is the integer which is the exponent of the magnitude\n\
+of the most significant digit of the operand (as though the\n\
+operand were truncated to a single digit while maintaining the\n\
+value of that digit and without limiting the resulting exponent).\n\
+\n\
+    >>> ExtendedContext.logb(Decimal('250'))\n\
+    Decimal('2')\n\
+    >>> ExtendedContext.logb(Decimal('2.50'))\n\
+    Decimal('0')\n\
+    >>> ExtendedContext.logb(Decimal('0.03'))\n\
+    Decimal('-2')\n\
+    >>> ExtendedContext.logb(Decimal('0'))\n\
+    Decimal('-Infinity')\n\
+    >>> ExtendedContext.logb(1)\n\
+    Decimal('0')\n\
+    >>> ExtendedContext.logb(10)\n\
+    Decimal('1')\n\
+    >>> ExtendedContext.logb(100)\n\
+    Decimal('2')\n\
 \n");
 
 PyDoc_STRVAR(doc_logical_and,
