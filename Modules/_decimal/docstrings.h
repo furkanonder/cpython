@@ -423,6 +423,17 @@ PyDoc_STRVAR(doc_is_signed,
 "is_signed($self, /)\n--\n\n\
 Return True if the argument has a negative sign and False otherwise.\n\
 Note that both zeros and NaNs can carry signs.\n\
+\n\
+    >>> ExtendedContext.is_signed(Decimal('2.50'))\n\
+    False\n\
+    >>> ExtendedContext.is_signed(Decimal('-12'))\n\
+    True\n\
+    >>> ExtendedContext.is_signed(Decimal('-0'))\n\
+    True\n\
+    >>> ExtendedContext.is_signed(8)\n\
+    False\n\
+    >>> ExtendedContext.is_signed(-8)\n\
+    True\n\
 \n");
 
 PyDoc_STRVAR(doc_is_snan,

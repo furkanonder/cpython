@@ -4627,7 +4627,8 @@ class Context(object):
         return a.is_qnan()
 
     def is_signed(self, a):
-        """Return True if the operand is negative; otherwise return False.
+        """Return True if the argument has a negative sign and False otherwise.
+        Note that both zeros and NaNs can carry signs.
 
         >>> ExtendedContext.is_signed(Decimal('2.50'))
         False
