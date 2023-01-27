@@ -955,13 +955,35 @@ all its arithmetic. Included for compatibility with the specification.\n\
 
 PyDoc_STRVAR(doc_remainder_near,
 "remainder_near($self, /, other, context=None)\n--\n\n\
-Return the remainder from dividing self by other.  This differs from\n\
-self % other in that the sign of the remainder is chosen so as to minimize\n\
-its absolute value. More precisely, the return value is self - n * other\n\
-where n is the integer nearest to the exact value of self / other, and\n\
-if two integers are equally near then the even one is chosen.\n\
+Returns to be \"a - b * n\", where n is the integer nearest the exact\n\
+value of \"x / b\" (if two integers are equally near then the even one\n\
+is chosen).  If the result is equal to 0 then its sign will be the\n\
+sign of a.\n\
 \n\
-If the result is zero then its sign will be the sign of self.\n\
+This operation will fail under the same conditions as integer division\n\
+(that is, if integer division on the same two operands would fail, the\n\
+remainder cannot be calculated).\n\
+\n\
+    >>> ExtendedContext.remainder_near(Decimal('2.1'), Decimal('3'))\n\
+    Decimal('-0.9')\n\
+    >>> ExtendedContext.remainder_near(Decimal('10'), Decimal('6'))\n\
+    Decimal('-2')\n\
+    >>> ExtendedContext.remainder_near(Decimal('10'), Decimal('3'))\n\
+    Decimal('1')\n\
+    >>> ExtendedContext.remainder_near(Decimal('-10'), Decimal('3'))\n\
+    Decimal('-1')\n\
+    >>> ExtendedContext.remainder_near(Decimal('10.2'), Decimal('1'))\n\
+    Decimal('0.2')\n\
+    >>> ExtendedContext.remainder_near(Decimal('10'), Decimal('0.3'))\n\
+    Decimal('0.1')\n\
+    >>> ExtendedContext.remainder_near(Decimal('3.6'), Decimal('1.3'))\n\
+    Decimal('-0.3')\n\
+    >>> ExtendedContext.remainder_near(3, 11)\n\
+    Decimal('3')\n\
+    >>> ExtendedContext.remainder_near(Decimal(3), 11)\n\
+    Decimal('3')\n\
+    >>> ExtendedContext.remainder_near(3, Decimal(11))\n\
+    Decimal('3')\n\
 \n");
 
 PyDoc_STRVAR(doc_rotate,
