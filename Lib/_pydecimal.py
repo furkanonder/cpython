@@ -4473,7 +4473,9 @@ class Context(object):
             return r
 
     def exp(self, a):
-        """Returns e ** a.
+        """Return the value of the (natural) exponential function e**a at the given
+        number. The function always uses the ROUND_HALF_EVEN mode and the result
+        is correctly rounded.
 
         >>> c = ExtendedContext.copy()
         >>> c.Emin = -999

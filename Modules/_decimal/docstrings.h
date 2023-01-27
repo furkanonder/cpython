@@ -260,9 +260,27 @@ InvalidOperation if the second operand cannot be converted exactly.\n\
 
 PyDoc_STRVAR(doc_exp,
 "exp($self, /, context=None)\n--\n\n\
-Return the value of the (natural) exponential function e**x at the given\n\
+Return the value of the (natural) exponential function e**a at the given\n\
 number.  The function always uses the ROUND_HALF_EVEN mode and the result\n\
 is correctly rounded.\n\
+\n\
+    >>> c = ExtendedContext.copy()\n\
+    >>> c.Emin = -999\n\
+    >>> c.Emax = 999\n\
+    >>> c.exp(Decimal('-Infinity'))\n\
+    Decimal('0')\n\
+    >>> c.exp(Decimal('-1'))\n\
+    Decimal('0.367879441')\n\
+    >>> c.exp(Decimal('0'))\n\
+    Decimal('1')\n\
+    >>> c.exp(Decimal('1'))\n\
+    Decimal('2.71828183')\n\
+    >>> c.exp(Decimal('0.693147181'))\n\
+    Decimal('2.00000000')\n\
+    >>> c.exp(Decimal('+Infinity'))\n\
+    Decimal('Infinity')\n\
+    >>> c.exp(10)\n\
+    Decimal('22026.4658')\n\
 \n");
 
 PyDoc_STRVAR(doc_from_float,
