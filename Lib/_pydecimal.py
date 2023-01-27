@@ -4501,8 +4501,8 @@ class Context(object):
     def fma(self, a, b, c):
         """Returns a multiplied by b, plus c.
 
-        The first two operands are multiplied together, using multiply,
-        the third operand is then added to the result of that
+        Fused multiply-add. The first two operands are multiplied together,
+        using multiply, the third operand is then added to the result of that
         multiplication, using add, all with only one final rounding.
 
         >>> ExtendedContext.fma(Decimal('3'), Decimal('5'), Decimal('7'))

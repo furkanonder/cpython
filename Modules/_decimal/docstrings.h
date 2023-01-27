@@ -302,12 +302,24 @@ Decimal.from_float(0.1) is not the same as Decimal('0.1').\n\
 
 PyDoc_STRVAR(doc_fma,
 "fma($self, /, other, third, context=None)\n--\n\n\
-Fused multiply-add.  Return self*other+third with no rounding of the\n\
-intermediate product self*other.\n\
+Returns a multiplied by b, plus c.\n\
 \n\
-    >>> Decimal(2).fma(3, 5)\n\
-    Decimal('11')\n\
+Fused multiply-add. The first two operands are multiplied together,\n\
+using multiply, the third operand is then added to the result of that\n\
+multiplication, using add, all with only one final rounding.\n\
 \n\
+    >>> ExtendedContext.fma(Decimal('3'), Decimal('5'), Decimal('7'))\n\
+    Decimal('22')\n\
+    >>> ExtendedContext.fma(Decimal('3'), Decimal('-5'), Decimal('7'))\n\
+    Decimal('-8')\n\
+    >>> ExtendedContext.fma(Decimal('888565290'), Decimal('1557.96930'), Decimal('-86087.7578'))\n\
+    Decimal('1.38435736E+12')\n\
+    >>> ExtendedContext.fma(1, 3, 4)\n\
+    Decimal('7')\n\
+    >>> ExtendedContext.fma(1, Decimal(3), 4)\n\
+    Decimal('7')\n\
+    >>> ExtendedContext.fma(1, 3, Decimal(4))\n\
+    Decimal('7')\n\
 \n");
 
 PyDoc_STRVAR(doc_is_canonical,
