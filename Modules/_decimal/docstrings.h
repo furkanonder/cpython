@@ -608,7 +608,27 @@ The operand must be a logical number.\n\
 
 PyDoc_STRVAR(doc_logical_or,
 "logical_or($self, /, other, context=None)\n--\n\n\
-Return the digit-wise 'or' of the two (logical) operands.\n\
+Applies the logical operation 'or' between each operand's digits.\n\
+The operands must be both logical numbers.\n\
+\n\
+    >>> ExtendedContext.logical_or(Decimal('0'), Decimal('0'))\n\
+    Decimal('0')\n\
+    >>> ExtendedContext.logical_or(Decimal('0'), Decimal('1'))\n\
+    Decimal('1')\n\
+    >>> ExtendedContext.logical_or(Decimal('1'), Decimal('0'))\n\
+    Decimal('1')\n\
+    >>> ExtendedContext.logical_or(Decimal('1'), Decimal('1'))\n\
+    Decimal('1')\n\
+    >>> ExtendedContext.logical_or(Decimal('1100'), Decimal('1010'))\n\
+    Decimal('1110')\n\
+    >>> ExtendedContext.logical_or(Decimal('1110'), Decimal('10'))\n\
+    Decimal('1110')\n\
+    >>> ExtendedContext.logical_or(110, 1101)\n\
+    Decimal('1111')\n\
+    >>> ExtendedContext.logical_or(Decimal(110), 1101)\n\
+    Decimal('1111')\n\
+    >>> ExtendedContext.logical_or(110, Decimal(1101))\n\
+    Decimal('1111')\n\
 \n");
 
 PyDoc_STRVAR(doc_logical_xor,
