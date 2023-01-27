@@ -633,7 +633,28 @@ The operands must be both logical numbers.\n\
 
 PyDoc_STRVAR(doc_logical_xor,
 "logical_xor($self, /, other, context=None)\n--\n\n\
-Return the digit-wise 'exclusive or' of the two (logical) operands.\n\
+Applies the logical operation 'xor' between each operand's digits.\n\
+\n\
+The operands must be both logical numbers.\n\
+\n\
+    >>> ExtendedContext.logical_xor(Decimal('0'), Decimal('0'))\n\
+    Decimal('0')\n\
+    >>> ExtendedContext.logical_xor(Decimal('0'), Decimal('1'))\n\
+    Decimal('1')\n\
+    >>> ExtendedContext.logical_xor(Decimal('1'), Decimal('0'))\n\
+    Decimal('1')\n\
+    >>> ExtendedContext.logical_xor(Decimal('1'), Decimal('1'))\n\
+    Decimal('0')\n\
+    >>> ExtendedContext.logical_xor(Decimal('1100'), Decimal('1010'))\n\
+    Decimal('110')\n\
+    >>> ExtendedContext.logical_xor(Decimal('1111'), Decimal('10'))\n\
+    Decimal('1101')\n\
+    >>> ExtendedContext.logical_xor(110, 1101)\n\
+    Decimal('1011')\n\
+    >>> ExtendedContext.logical_xor(Decimal(110), 1101)\n\
+    Decimal('1011')\n\
+    >>> ExtendedContext.logical_xor(110, Decimal(1101))\n\
+    Decimal('1011')\n\
 \n");
 
 PyDoc_STRVAR(doc_max,
