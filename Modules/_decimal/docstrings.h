@@ -455,6 +455,22 @@ PyDoc_STRVAR(doc_is_subnormal,
 Return True if the argument is subnormal, and False otherwise. A number is\n\
 subnormal if it is non-zero, finite, and has an adjusted exponent less\n\
 than Emin.\n\
+\n\
+    >>> c = ExtendedContext.copy()\n\
+    >>> c.Emin = -999\n\
+    >>> c.Emax = 999\n\
+    >>> c.is_subnormal(Decimal('2.50'))\n\
+    False\n\
+    >>> c.is_subnormal(Decimal('0.1E-999'))\n\
+    True\n\
+    >>> c.is_subnormal(Decimal('0.00'))\n\
+    False\n\
+    >>> c.is_subnormal(Decimal('-Inf'))\n\
+    False\n\
+    >>> c.is_subnormal(Decimal('NaN'))\n\
+    False\n\
+    >>> c.is_subnormal(1)\n\
+    False\n\
 \n");
 
 PyDoc_STRVAR(doc_is_zero,
