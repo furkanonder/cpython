@@ -659,8 +659,28 @@ The operands must be both logical numbers.\n\
 
 PyDoc_STRVAR(doc_max,
 "max($self, /, other, context=None)\n--\n\n\
-Maximum of self and other.  If one operand is a quiet NaN and the other is\n\
-numeric, the numeric operand is returned.\n\
+max compares two values numerically and returns the maximum.\n\
+\n\
+If either operand is a NaN then the general rules apply.\n\
+Otherwise, the operands are compared as though by the compare\n\
+operation.  If they are numerically equal then the left-hand operand\n\
+is chosen as the result.  Otherwise the maximum (closer to positive\n\
+infinity) of the two operands is chosen as the result.\n\
+\n\
+    >>> ExtendedContext.max(Decimal('3'), Decimal('2'))\n\
+    Decimal('3')\n\
+    >>> ExtendedContext.max(Decimal('-10'), Decimal('3'))\n\
+    Decimal('3')\n\
+    >>> ExtendedContext.max(Decimal('1.0'), Decimal('1'))\n\
+    Decimal('1')\n\
+    >>> ExtendedContext.max(Decimal('7'), Decimal('NaN'))\n\
+    Decimal('7')\n\
+    >>> ExtendedContext.max(1, 2)\n\
+    Decimal('2')\n\
+    >>> ExtendedContext.max(Decimal(1), 2)\n\
+    Decimal('2')\n\
+    >>> ExtendedContext.max(1, Decimal(2))\n\
+    Decimal('2')\n\
 \n");
 
 PyDoc_STRVAR(doc_max_mag,
