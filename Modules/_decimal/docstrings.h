@@ -475,8 +475,18 @@ than Emin.\n\
 
 PyDoc_STRVAR(doc_is_zero,
 "is_zero($self, /)\n--\n\n\
-Return True if the argument is a (positive or negative) zero and False\n\
-otherwise.\n\
+Return True if the operand is a zero; otherwise return False.\n\
+\n\
+    >>> ExtendedContext.is_zero(Decimal('0'))\n\
+    True\n\
+    >>> ExtendedContext.is_zero(Decimal('2.50'))\n\
+    False\n\
+    >>> ExtendedContext.is_zero(Decimal('-0E+2'))\n\
+    True\n\
+    >>> ExtendedContext.is_zero(1)\n\
+    False\n\
+    >>> ExtendedContext.is_zero(0)\n\
+    True\n\
 \n");
 
 PyDoc_STRVAR(doc_ln,
