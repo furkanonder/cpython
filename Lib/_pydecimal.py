@@ -2917,7 +2917,9 @@ class Decimal(object):
         return self._int[-1+self._exp] in '02468'
 
     def adjusted(self):
-        """Return the adjusted exponent of self"""
+        """Return the adjusted exponent of the number.\n\
+        Defined as exp + digits - 1.
+        """
         try:
             return self._exp + len(self._int) - 1
         # If NaN or Infinity, self._exp is string

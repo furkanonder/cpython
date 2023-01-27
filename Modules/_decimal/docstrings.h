@@ -62,7 +62,8 @@ the InvalidOperation trap is active.\n\
 
 PyDoc_STRVAR(doc_adjusted,
 "adjusted($self, /)\n--\n\n\
-Return the adjusted exponent of the number.  Defined as exp + digits - 1.\n\
+Return the adjusted exponent of the number.\n\
+Defined as exp + digits - 1.\n\
 \n");
 
 PyDoc_STRVAR(doc_as_tuple,
