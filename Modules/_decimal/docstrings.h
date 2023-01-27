@@ -590,7 +590,20 @@ The operands must be both logical numbers.\n\
 
 PyDoc_STRVAR(doc_logical_invert,
 "logical_invert($self, /, context=None)\n--\n\n\
-Return the digit-wise inversion of the (logical) operand.\n\
+Invert all the digits in the operand.\n\
+\n\
+The operand must be a logical number.\n\
+\n\
+    >>> ExtendedContext.logical_invert(Decimal('0'))\n\
+    Decimal('111111111')\n\
+    >>> ExtendedContext.logical_invert(Decimal('1'))\n\
+    Decimal('111111110')\n\
+    >>> ExtendedContext.logical_invert(Decimal('111111111'))\n\
+    Decimal('0')\n\
+    >>> ExtendedContext.logical_invert(Decimal('101010101'))\n\
+    Decimal('10101010')\n\
+    >>> ExtendedContext.logical_invert(1101)\n\
+    Decimal('111110010')\n\
 \n");
 
 PyDoc_STRVAR(doc_logical_or,
