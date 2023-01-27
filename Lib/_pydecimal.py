@@ -4572,7 +4572,7 @@ class Context(object):
         return a.is_infinite()
 
     def is_nan(self, a):
-        """Return True if the operand is a qNaN or sNaN;
+        """Return True if the operand is a (quiet or signaling) NaN;
         otherwise return False.
 
         >>> ExtendedContext.is_nan(Decimal('2.50'))

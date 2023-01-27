@@ -369,8 +369,17 @@ Return True if the operand is infinite; otherwise return False.\n\
 
 PyDoc_STRVAR(doc_is_nan,
 "is_nan($self, /)\n--\n\n\
-Return True if the argument is a (quiet or signaling) NaN and False\n\
-otherwise.\n\
+Return True if the operand is a (quiet or signaling) NaN\n\
+otherwise return False.\n\
+\n\
+    >>> ExtendedContext.is_nan(Decimal('2.50'))\n\
+    False\n\
+    >>> ExtendedContext.is_nan(Decimal('NaN'))\n\
+    True\n\
+    >>> ExtendedContext.is_nan(Decimal('-sNaN'))\n\
+    True\n\
+    >>> ExtendedContext.is_nan(1)\n\
+    False\n\
 \n");
 
 PyDoc_STRVAR(doc_is_normal,
