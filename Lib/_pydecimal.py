@@ -5326,7 +5326,8 @@ class Context(object):
         return a.quantize(b, context=self)
 
     def radix(self):
-        """Just returns 10, as this is Decimal, :)
+        """Return Decimal(10), the radix (base) in which the Decimal class does
+        all its arithmetic. Included for compatibility with the specification.
 
         >>> ExtendedContext.radix()
         Decimal('10')

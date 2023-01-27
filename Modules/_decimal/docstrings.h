@@ -948,6 +948,9 @@ PyDoc_STRVAR(doc_radix,
 "radix($self, /)\n--\n\n\
 Return Decimal(10), the radix (base) in which the Decimal class does\n\
 all its arithmetic. Included for compatibility with the specification.\n\
+\n\
+    >>> ExtendedContext.radix()\n\
+    Decimal('10')\n\
 \n");
 
 PyDoc_STRVAR(doc_remainder_near,
