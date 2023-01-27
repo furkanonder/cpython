@@ -789,6 +789,30 @@ If the two operands are unequal, return the number closest to the first\n\
 operand in the direction of the second operand.  If both operands are\n\
 numerically equal, return a copy of the first operand with the sign set\n\
 to be the same as the sign of the second operand.\n\
+\n\
+    >>> c = ExtendedContext.copy()\n\
+    >>> c.Emin = -999\n\
+    >>> c.Emax = 999\n\
+    >>> c.next_toward(Decimal('1'), Decimal('2'))\n\
+    Decimal('1.00000001')\n\
+    >>> c.next_toward(Decimal('-1E-1007'), Decimal('1'))\n\
+    Decimal('-0E-1007')\n\
+    >>> c.next_toward(Decimal('-1.00000003'), Decimal('0'))\n\
+    Decimal('-1.00000002')\n\
+    >>> c.next_toward(Decimal('1'), Decimal('0'))\n\
+    Decimal('0.999999999')\n\
+    >>> c.next_toward(Decimal('1E-1007'), Decimal('-100'))\n\
+    Decimal('0E-1007')\n\
+    >>> c.next_toward(Decimal('-1.00000003'), Decimal('-10'))\n\
+    Decimal('-1.00000004')\n\
+    >>> c.next_toward(Decimal('0.00'), Decimal('-0.0000'))\n\
+    Decimal('-0.00')\n\
+    >>> c.next_toward(0, 1)\n\
+    Decimal('1E-1007')\n\
+    >>> c.next_toward(Decimal(0), 1)\n\
+    Decimal('1E-1007')\n\
+    >>> c.next_toward(0, Decimal(1))\n\
+    Decimal('1E-1007')\n\
 \n");
 
 PyDoc_STRVAR(doc_normalize,

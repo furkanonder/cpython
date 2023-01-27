@@ -5062,12 +5062,10 @@ class Context(object):
         return a.next_plus(context=self)
 
     def next_toward(self, a, b):
-        """Returns the number closest to a, in direction towards b.
-
-        The result is the closest representable number from the first
-        operand (but not the first operand) that is in the direction
-        towards the second operand, unless the operands have the same
-        value.
+        """If the two operands are unequal, return the number closest to the first
+        operand in the direction of the second operand.  If both operands are
+        numerically equal, return a copy of the first operand with the sign set
+        to be the same as the sign of the second operand.
 
         >>> c = ExtendedContext.copy()
         >>> c.Emin = -999
