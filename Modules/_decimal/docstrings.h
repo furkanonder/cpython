@@ -1057,13 +1057,31 @@ Returns the first operand after adding the second value its exp.\n\
 
 PyDoc_STRVAR(doc_shift,
 "shift($self, /, other, context=None)\n--\n\n\
-Return the result of shifting the digits of the first operand by an amount\n\
-specified by the second operand.  The second operand must be an integer in\n\
-the range -precision through precision. The absolute value of the second\n\
-operand gives the number of places to shift. If the second operand is\n\
-positive, then the shift is to the left; otherwise the shift is to the\n\
-right. Digits shifted into the coefficient are zeros. The sign and exponent\n\
-of the first operand are unchanged.\n\
+Returns a shifted copy of a, b times.\n\
+\n\
+The coefficient of the result is a shifted copy of the digits\n\
+in the coefficient of the first operand.  The number of places\n\
+to shift is taken from the absolute value of the second operand,\n\
+with the shift being to the left if the second operand is\n\
+positive or to the right otherwise.  Digits shifted into the\n\
+coefficient are zeros.\n\
+\n\
+    >>> ExtendedContext.shift(Decimal('34'), Decimal('8'))\n\
+    Decimal('400000000')\n\
+    >>> ExtendedContext.shift(Decimal('12'), Decimal('9'))\n\
+    Decimal('0')\n\
+    >>> ExtendedContext.shift(Decimal('123456789'), Decimal('-2'))\n\
+    Decimal('1234567')\n\
+    >>> ExtendedContext.shift(Decimal('123456789'), Decimal('0'))\n\
+    Decimal('123456789')\n\
+    >>> ExtendedContext.shift(Decimal('123456789'), Decimal('+2'))\n\
+    Decimal('345678900')\n\
+    >>> ExtendedContext.shift(88888888, 2)\n\
+    Decimal('888888800')\n\
+    >>> ExtendedContext.shift(Decimal(88888888), 2)\n\
+    Decimal('888888800')\n\
+    >>> ExtendedContext.shift(88888888, Decimal(2))\n\
+    Decimal('888888800')\n\
 \n");
 
 PyDoc_STRVAR(doc_sqrt,
