@@ -687,6 +687,16 @@ PyDoc_STRVAR(doc_max_mag,
 "max_mag($self, /, other, context=None)\n--\n\n\
 Similar to the max() method, but the comparison is done using the absolute\n\
 values of the operands.\n\
+    >>> ExtendedContext.max_mag(Decimal('7'), Decimal('NaN'))\n\
+    Decimal('7')\n\
+    >>> ExtendedContext.max_mag(Decimal('7'), Decimal('-10'))\n\
+    Decimal('-10')\n\
+    >>> ExtendedContext.max_mag(1, -2)\n\
+    Decimal('-2')\n\
+    >>> ExtendedContext.max_mag(Decimal(1), -2)\n\
+    Decimal('-2')\n\
+    >>> ExtendedContext.max_mag(1, Decimal(-2))\n\
+    Decimal('-2')\n\
 \n");
 
 PyDoc_STRVAR(doc_min,

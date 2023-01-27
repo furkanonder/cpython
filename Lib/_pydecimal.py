@@ -4907,7 +4907,8 @@ class Context(object):
         return a.max(b, context=self)
 
     def max_mag(self, a, b):
-        """Compares the values numerically with their sign ignored.
+        """Similar to the max() method, but the comparison is done using the absolute
+        values of the operands.
 
         >>> ExtendedContext.max_mag(Decimal('7'), Decimal('NaN'))
         Decimal('7')
