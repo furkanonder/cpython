@@ -407,7 +407,16 @@ argument is zero, subnormal, infinite or a NaN.\n\
 
 PyDoc_STRVAR(doc_is_qnan,
 "is_qnan($self, /)\n--\n\n\
-Return True if the argument is a quiet NaN, and False otherwise.\n\
+Return True if the argument is a quiet NaN; otherwise return False.\n\
+\n\
+    >>> ExtendedContext.is_qnan(Decimal('2.50'))\n\
+    False\n\
+    >>> ExtendedContext.is_qnan(Decimal('NaN'))\n\
+    True\n\
+    >>> ExtendedContext.is_qnan(Decimal('sNaN'))\n\
+    False\n\
+    >>> ExtendedContext.is_qnan(1)\n\
+    False\n\
 \n");
 
 PyDoc_STRVAR(doc_is_signed,
