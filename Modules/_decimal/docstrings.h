@@ -988,14 +988,30 @@ remainder cannot be calculated).\n\
 
 PyDoc_STRVAR(doc_rotate,
 "rotate($self, /, other, context=None)\n--\n\n\
-Return the result of rotating the digits of the first operand by an amount\n\
-specified by the second operand.  The second operand must be an integer in\n\
-the range -precision through precision. The absolute value of the second\n\
-operand gives the number of places to rotate. If the second operand is\n\
-positive then rotation is to the left; otherwise rotation is to the right.\n\
-The coefficient of the first operand is padded on the left with zeros to\n\
-length precision if necessary. The sign and exponent of the first operand are\n\
-unchanged.\n\
+Returns a rotated copy of a, b times.\n\
+\n\
+The coefficient of the result is a rotated copy of the digits in\n\
+the coefficient of the first operand.  The number of places of\n\
+rotation is taken from the absolute value of the second operand,\n\
+with the rotation being to the left if the second operand is\n\
+positive or to the right otherwise.\n\
+\n\
+    >>> ExtendedContext.rotate(Decimal('34'), Decimal('8'))\n\
+    Decimal('400000003')\n\
+    >>> ExtendedContext.rotate(Decimal('12'), Decimal('9'))\n\
+    Decimal('12')\n\
+    >>> ExtendedContext.rotate(Decimal('123456789'), Decimal('-2'))\n\
+    Decimal('891234567')\n\
+    >>> ExtendedContext.rotate(Decimal('123456789'), Decimal('0'))\n\
+    Decimal('123456789')\n\
+    >>> ExtendedContext.rotate(Decimal('123456789'), Decimal('+2'))\n\
+    Decimal('345678912')\n\
+    >>> ExtendedContext.rotate(1333333, 1)\n\
+    Decimal('13333330')\n\
+    >>> ExtendedContext.rotate(Decimal(1333333), 1)\n\
+    Decimal('13333330')\n\
+    >>> ExtendedContext.rotate(1333333, Decimal(1))\n\
+    Decimal('13333330')\n\
 \n");
 
 PyDoc_STRVAR(doc_same_quantum,
