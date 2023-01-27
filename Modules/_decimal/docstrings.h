@@ -387,6 +387,22 @@ PyDoc_STRVAR(doc_is_normal,
 Return True if the argument is a normal finite non-zero number with an\n\
 adjusted exponent greater than or equal to Emin. Return False if the\n\
 argument is zero, subnormal, infinite or a NaN.\n\
+\n\
+    >>> c = ExtendedContext.copy()\n\
+    >>> c.Emin = -999\n\
+    >>> c.Emax = 999\n\
+    >>> c.is_normal(Decimal('2.50'))\n\
+    True\n\
+    >>> c.is_normal(Decimal('0.1E-999'))\n\
+    False\n\
+    >>> c.is_normal(Decimal('0.00'))\n\
+    False\n\
+    >>> c.is_normal(Decimal('-Inf'))\n\
+    False\n\
+    >>> c.is_normal(Decimal('NaN'))\n\
+    False\n\
+    >>> c.is_normal(1)\n\
+    True\n\
 \n");
 
 PyDoc_STRVAR(doc_is_qnan,

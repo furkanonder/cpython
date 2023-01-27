@@ -4588,8 +4588,9 @@ class Context(object):
         return a.is_nan()
 
     def is_normal(self, a):
-        """Return True if the operand is a normal number;
-        otherwise return False.
+        """Return True if the argument is a normal finite non-zero number with an
+        adjusted exponent greater than or equal to Emin. Return False if the
+        argument is zero, subnormal, infinite or a NaN.
 
         >>> c = ExtendedContext.copy()
         >>> c.Emin = -999
