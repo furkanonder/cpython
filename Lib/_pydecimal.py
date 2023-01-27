@@ -5120,7 +5120,8 @@ class Context(object):
         return a.normalize(context=self)
 
     def number_class(self, a):
-        """Returns an indication of the class of the operand.
+        """Return a string describing the class of the operand.  The returned value
+        is one of the following ten strings:
 
         The class is one of the following strings:
           -sNaN

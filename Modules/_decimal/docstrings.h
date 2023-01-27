@@ -855,6 +855,37 @@ is one of the following ten strings:\n\
     * 'NaN', indicating that the operand is a quiet NaN (Not a Number).\n\
     * 'sNaN', indicating that the operand is a signaling NaN.\n\
 \n\
+    >>> c = ExtendedContext.copy()\n\
+    >>> c.Emin = -999\n\
+    >>> c.Emax = 999\n\
+    >>> c.number_class(Decimal('Infinity'))\n\
+    '+Infinity'\n\
+    >>> c.number_class(Decimal('1E-10'))\n\
+    '+Normal'\n\
+    >>> c.number_class(Decimal('2.50'))\n\
+    '+Normal'\n\
+    >>> c.number_class(Decimal('0.1E-999'))\n\
+    '+Subnormal'\n\
+    >>> c.number_class(Decimal('0'))\n\
+    '+Zero'\n\
+    >>> c.number_class(Decimal('-0'))\n\
+    '-Zero'\n\
+    >>> c.number_class(Decimal('-0.1E-999'))\n\
+    '-Subnormal'\n\
+    >>> c.number_class(Decimal('-1E-10'))\n\
+    '-Normal'\n\
+    >>> c.number_class(Decimal('-2.50'))\n\
+    '-Normal'\n\
+    >>> c.number_class(Decimal('-Infinity'))\n\
+    '-Infinity'\n\
+    >>> c.number_class(Decimal('NaN'))\n\
+    'NaN'\n\
+    >>> c.number_class(Decimal('-NaN'))\n\
+    'NaN'\n\
+    >>> c.number_class(Decimal('sNaN'))\n\
+    'sNaN'\n\
+    >>> c.number_class(123)\n\
+    '+Normal'\n\
 \n");
 
 PyDoc_STRVAR(doc_quantize,
