@@ -1016,11 +1016,25 @@ positive or to the right otherwise.\n\
 
 PyDoc_STRVAR(doc_same_quantum,
 "same_quantum($self, /, other, context=None)\n--\n\n\
-Test whether self and other have the same exponent or whether both are NaN.\n\
+Returns True if the two operands have the same exponent.\n\
 \n\
-This operation is unaffected by context and is quiet: no flags are changed\n\
-and no rounding is performed. As an exception, the C version may raise\n\
-InvalidOperation if the second operand cannot be converted exactly.\n\
+The result is never affected by either the sign or the coefficient of\n\
+either operand.\n\
+\n\
+    >>> ExtendedContext.same_quantum(Decimal('2.17'), Decimal('0.001'))\n\
+    False\n\
+    >>> ExtendedContext.same_quantum(Decimal('2.17'), Decimal('0.01'))\n\
+    True\n\
+    >>> ExtendedContext.same_quantum(Decimal('2.17'), Decimal('1'))\n\
+    False\n\
+    >>> ExtendedContext.same_quantum(Decimal('Inf'), Decimal('-Inf'))\n\
+    True\n\
+    >>> ExtendedContext.same_quantum(10000, -1)\n\
+    True\n\
+    >>> ExtendedContext.same_quantum(Decimal(10000), -1)\n\
+    True\n\
+    >>> ExtendedContext.same_quantum(10000, Decimal(-1))\n\
+    True\n\
 \n");
 
 PyDoc_STRVAR(doc_scaleb,
