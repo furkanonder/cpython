@@ -1039,9 +1039,20 @@ either operand.\n\
 
 PyDoc_STRVAR(doc_scaleb,
 "scaleb($self, /, other, context=None)\n--\n\n\
-Return the first operand with the exponent adjusted the second.  Equivalently,\n\
-return the first operand multiplied by 10**other. The second operand must be\n\
-an integer.\n\
+Returns the first operand after adding the second value its exp.\n\
+\n\
+    >>> ExtendedContext.scaleb(Decimal('7.50'), Decimal('-2'))\n\
+    Decimal('0.0750')\n\
+    >>> ExtendedContext.scaleb(Decimal('7.50'), Decimal('0'))\n\
+    Decimal('7.50')\n\
+    >>> ExtendedContext.scaleb(Decimal('7.50'), Decimal('3'))\n\
+    Decimal('7.50E+3')\n\
+    >>> ExtendedContext.scaleb(1, 4)\n\
+    Decimal('1E+4')\n\
+    >>> ExtendedContext.scaleb(Decimal(1), 4)\n\
+    Decimal('1E+4')\n\
+    >>> ExtendedContext.scaleb(1, Decimal(4))\n\
+    Decimal('1E+4')\n\
 \n");
 
 PyDoc_STRVAR(doc_shift,
