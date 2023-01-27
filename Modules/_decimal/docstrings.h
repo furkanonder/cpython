@@ -767,6 +767,20 @@ PyDoc_STRVAR(doc_next_plus,
 Return the smallest number representable in the given context (or in the\n\
 current default context if no context is given) that is larger than the\n\
 given operand.\n\
+\n\
+    >>> c = ExtendedContext.copy()\n\
+    >>> c.Emin = -999\n\
+    >>> c.Emax = 999\n\
+    >>> ExtendedContext.next_plus(Decimal('1'))\n\
+    Decimal('1.00000001')\n\
+    >>> c.next_plus(Decimal('-1E-1007'))\n\
+    Decimal('-0E-1007')\n\
+    >>> ExtendedContext.next_plus(Decimal('-1.00000003'))\n\
+    Decimal('-1.00000002')\n\
+    >>> c.next_plus(Decimal('-Infinity'))\n\
+    Decimal('-9.99999999E+999')\n\
+    >>> c.next_plus(1)\n\
+    Decimal('1.00000001')\n\
 \n");
 
 PyDoc_STRVAR(doc_next_toward,
