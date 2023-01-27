@@ -72,11 +72,19 @@ Return a tuple representation of the number.\n\
 
 PyDoc_STRVAR(doc_as_integer_ratio,
 "as_integer_ratio($self, /)\n--\n\n\
-Decimal.as_integer_ratio() -> (int, int)\n\
+Express a finite Decimal instance in the form n / d.\n\
 \n\
-Return a pair of integers, whose ratio is exactly equal to the original\n\
+Return a pair (n, d) of integers, whose ratio is exactly equal to the original\n\
 Decimal and with a positive denominator. The ratio is in lowest terms.\n\
 Raise OverflowError on infinities and a ValueError on NaNs.\n\
+\n\
+    >>> Decimal('3.14').as_integer_ratio()\n\
+    (157, 50)\n\
+    >>> Decimal('-123e5').as_integer_ratio()\n\
+    (-12300000, 1)\n\
+    >>> Decimal('0.00').as_integer_ratio()\n\
+    (0, 1)\n\
+\n\
 \n");
 
 PyDoc_STRVAR(doc_canonical,

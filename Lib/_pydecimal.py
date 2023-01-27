@@ -986,8 +986,10 @@ class Decimal(object):
     def as_integer_ratio(self):
         """Express a finite Decimal instance in the form n / d.
 
-        Returns a pair (n, d) of integers.  When called on an infinity
-        or NaN, raises OverflowError or ValueError respectively.
+        Return a pair (n, d) of integers, whose ratio is exactly equal to the
+        original Decimal and with a positive denominator. The ratio is in
+        lowest terms. Raise OverflowError on infinities and a ValueError
+        on NaNs.
 
         >>> Decimal('3.14').as_integer_ratio()
         (157, 50)
