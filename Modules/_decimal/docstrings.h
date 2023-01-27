@@ -565,7 +565,27 @@ value of that digit and without limiting the resulting exponent).\n\
 
 PyDoc_STRVAR(doc_logical_and,
 "logical_and($self, /, other, context=None)\n--\n\n\
-Return the digit-wise 'and' of the two (logical) operands.\n\
+Applies the logical operation 'and' between each operand's digits.\n\
+The operands must be both logical numbers.\n\
+\n\
+    >>> ExtendedContext.logical_and(Decimal('0'), Decimal('0'))\n\
+    Decimal('0')\n\
+    >>> ExtendedContext.logical_and(Decimal('0'), Decimal('1'))\n\
+    Decimal('0')\n\
+    >>> ExtendedContext.logical_and(Decimal('1'), Decimal('0'))\n\
+    Decimal('0')\n\
+    >>> ExtendedContext.logical_and(Decimal('1'), Decimal('1'))\n\
+    Decimal('1')\n\
+    >>> ExtendedContext.logical_and(Decimal('1100'), Decimal('1010'))\n\
+    Decimal('1000')\n\
+    >>> ExtendedContext.logical_and(Decimal('1111'), Decimal('10'))\n\
+    Decimal('10')\n\
+    >>> ExtendedContext.logical_and(110, 1101)\n\
+    Decimal('100')\n\
+    >>> ExtendedContext.logical_and(Decimal(110), 1101)\n\
+    Decimal('100')\n\
+    >>> ExtendedContext.logical_and(110, Decimal(1101))\n\
+    Decimal('100')\n\
 \n");
 
 PyDoc_STRVAR(doc_logical_invert,
