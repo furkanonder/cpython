@@ -1086,8 +1086,33 @@ coefficient are zeros.\n\
 
 PyDoc_STRVAR(doc_sqrt,
 "sqrt($self, /, context=None)\n--\n\n\
-Return the square root of the argument to full precision. The result is\n\
-correctly rounded using the ROUND_HALF_EVEN rounding mode.\n\
+Square root of a non-negative number to context precision.\n\
+\n\
+If the result must be inexact, it is rounded using the round-half-even\n\
+algorithm.\n\
+\n\
+    >>> ExtendedContext.sqrt(Decimal('0'))\n\
+    Decimal('0')\n\
+    >>> ExtendedContext.sqrt(Decimal('-0'))\n\
+    Decimal('-0')\n\
+    >>> ExtendedContext.sqrt(Decimal('0.39'))\n\
+    Decimal('0.624499800')\n\
+    >>> ExtendedContext.sqrt(Decimal('100'))\n\
+    Decimal('10')\n\
+    >>> ExtendedContext.sqrt(Decimal('1'))\n\
+    Decimal('1')\n\
+    >>> ExtendedContext.sqrt(Decimal('1.0'))\n\
+    Decimal('1.0')\n\
+    >>> ExtendedContext.sqrt(Decimal('1.00'))\n\
+    Decimal('1.0')\n\
+    >>> ExtendedContext.sqrt(Decimal('7'))\n\
+    Decimal('2.64575131')\n\
+    >>> ExtendedContext.sqrt(Decimal('10'))\n\
+    Decimal('3.16227766')\n\
+    >>> ExtendedContext.sqrt(2)\n\
+    Decimal('1.41421356')\n\
+    >>> ExtendedContext.prec\n\
+    9\n\
 \n");
 
 PyDoc_STRVAR(doc_to_eng_string,
