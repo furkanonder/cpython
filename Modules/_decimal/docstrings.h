@@ -324,9 +324,12 @@ multiplication, using add, all with only one final rounding.\n\
 
 PyDoc_STRVAR(doc_is_canonical,
 "is_canonical($self, /)\n--\n\n\
-Return True if the argument is canonical and False otherwise.  Currently,\n\
-a Decimal instance is always canonical, so this operation always returns\n\
-True.\n\
+Return True if the operand is canonical; otherwise return False.\n\
+Currently, the encoding of a Decimal instance is always\n\
+canonical, so this method returns True for any Decimal.\n\
+\n\
+    >>> ExtendedContext.is_canonical(Decimal('2.50'))\n\
+    True\n\
 \n");
 
 PyDoc_STRVAR(doc_is_finite,
