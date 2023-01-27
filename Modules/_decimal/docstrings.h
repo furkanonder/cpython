@@ -355,8 +355,16 @@ NaN.\n\
 
 PyDoc_STRVAR(doc_is_infinite,
 "is_infinite($self, /)\n--\n\n\
-Return True if the argument is either positive or negative infinity and\n\
-False otherwise.\n\
+Return True if the operand is infinite; otherwise return False.\n\
+\n\
+    >>> ExtendedContext.is_infinite(Decimal('2.50'))\n\
+    False\n\
+    >>> ExtendedContext.is_infinite(Decimal('-Inf'))\n\
+    True\n\
+    >>> ExtendedContext.is_infinite(Decimal('NaN'))\n\
+    False\n\
+    >>> ExtendedContext.is_infinite(1)\n\
+    False\n\
 \n");
 
 PyDoc_STRVAR(doc_is_nan,
