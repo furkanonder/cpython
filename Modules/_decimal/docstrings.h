@@ -727,8 +727,18 @@ infinity) of the two operands is chosen as the result.\n\
 
 PyDoc_STRVAR(doc_min_mag,
 "min_mag($self, /, other, context=None)\n--\n\n\
-Similar to the min() method, but the comparison is done using the absolute\n\
-values of the operands.\n\
+Compare the values numerically with their sign ignored.\n\
+\n\
+    >>> ExtendedContext.min_mag(Decimal('3'), Decimal('-2'))\n\
+    Decimal('-2')\n\
+    >>> ExtendedContext.min_mag(Decimal('-3'), Decimal('NaN'))\n\
+    Decimal('-3')\n\
+    >>> ExtendedContext.min_mag(1, -2)\n\
+    Decimal('1')\n\
+    >>> ExtendedContext.min_mag(Decimal(1), -2)\n\
+    Decimal('1')\n\
+    >>> ExtendedContext.min_mag(1, Decimal(-2))\n\
+    Decimal('1')\n\
 \n");
 
 PyDoc_STRVAR(doc_next_minus,
