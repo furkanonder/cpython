@@ -1653,6 +1653,7 @@ class Decimal(object):
         return Decimal(0)
 
     def conjugate(self):
+        """Return self"""
         return self
 
     def __complex__(self):
@@ -4323,7 +4324,8 @@ class Context(object):
         return a.compare_total_mag(b)
 
     def copy_abs(self, a):
-        """Returns a copy of the operand with the sign set to 0.
+        """Return the absolute value of the argument. This operation is unaffected by
+        context and is quiet: no flags are changed and no rounding is performed.
 
         >>> ExtendedContext.copy_abs(Decimal('2.1'))
         Decimal('2.1')

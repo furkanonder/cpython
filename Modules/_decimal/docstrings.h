@@ -215,8 +215,15 @@ Return self.\n\
 
 PyDoc_STRVAR(doc_copy_abs,
 "copy_abs($self, /)\n--\n\n\
-Return the absolute value of the argument.  This operation is unaffected by\n\
+Return the absolute value of the argument. This operation is unaffected by\n\
 context and is quiet: no flags are changed and no rounding is performed.\n\
+\n\
+    >>> ExtendedContext.copy_abs(Decimal('2.1'))\n\
+    Decimal('2.1')\n\
+    >>> ExtendedContext.copy_abs(Decimal('-100'))\n\
+    Decimal('100')\n\
+    >>> ExtendedContext.copy_abs(-1)\n\
+    Decimal('1')\n\
 \n");
 
 PyDoc_STRVAR(doc_copy_negate,
