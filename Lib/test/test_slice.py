@@ -80,17 +80,19 @@ class SliceTest(unittest.TestCase):
         self.assertEqual(repr(slice(1, 2, 3)), "slice(1, 2, 3)")
 
     def test_hash(self):
-        self.assertEqual(hash(slice(5)), slice(5).__hash__())
-        self.assertEqual(hash(slice(1, 2)), slice(1, 2).__hash__())
+        self.assertEqual(hash(slice(1)), hash(slice(1)))
+        self.assertEqual(hash(slice(1, 2)), hash(slice(1, 2)))
+        self.assertEqual(hash(slice(1, 2, 3)), hash(slice(1, 2, 3)))
         self.assertEqual(hash(slice(1, 2, 3)), slice(1, 2, 3).__hash__())
-        self.assertEqual(hash((slice(4, 2), slice(2, 6))), (slice(4, 2), slice(2, 6)).__hash__())
-        self.assertNotEqual(slice(5), slice(6))
+
+        self.assertNotEqual(hash(slice(1, 2, 3)), hash(slice(3, 2, 1)))
+
+        s = slice(1, 2, [])
+        with self.assertRaises(TypeError):
+            hash(s)
 
         with self.assertRaises(TypeError):
-            hash(slice(1, 2, []))
-
-        with self.assertRaises(TypeError):
-            hash(slice(4, {}))
+            s.__hash__()
 
     def test_cmp(self):
         s1 = slice(1, 2, 3)
